@@ -28,4 +28,4 @@ Sistema Full-Stack de gestión de cines, con panel administrativo integral (CRUD
 3. Ejecutar `npm start` para levantar el servidor local en el puerto 3000.
 4. Entrar desde el navegador a `http://localhost:3000`.
 
-*Rol Administrativo por defecto: \`admin\` / \`admin\`*
+*el usuario de administrador el user: admin_admin y la contraseña es: admin*

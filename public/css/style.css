@@ -38,6 +38,10 @@ body {
     line-height: 1.6;
 }
 
+a {
+    text-decoration: none;
+}
+
 .spacer {
     height: 20px;
 }
