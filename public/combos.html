@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineMerk | Cartelera</title>
+    <title>CineMerk | Combos y Confitería</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -21,10 +21,10 @@
                 <span>Cine<span>Merk</span></span>
             </div>
             <nav class="nav-menu">
-                <a href="movies.html" class="nav-item active">
+                <a href="index.html" class="nav-item">
                     <i class="fas fa-film"></i> Cartelera
                 </a>
-                <a href="index.html" class="nav-item">
+                <a href="combos.html" class="nav-item active">
                     <i class="fas fa-hotdog"></i> Combos y Confitería
                 </a>
                 <a href="purchases.html" class="nav-item">
@@ -46,7 +46,7 @@
         <!-- Main Content -->
         <main class="main-content">
             <header class="top-bar">
-                <h1 id="page-title">Cartelera</h1>
+                <h1 id="page-title">Combos y Confitería</h1>
                 <div class="user-profile" id="user-profile-header">
                     <button class="cart-toggle" id="cart-btn">
                         <i class="fas fa-shopping-cart"></i>
@@ -66,8 +66,12 @@
             </header>
 
             <section class="content-section active">
-                <div id="movies-list" class="movies-grid">
-                    <!-- Dinámico: Películas de main.js -->
+                <div class="section-header">
+                    <h2>Combos y Alimentos</h2>
+                    <p style="color:var(--text-muted)">¡Disfruta de nuestros snacks especiales!</p>
+                </div>
+                <div id="combos-list" class="movies-grid">
+                    <!-- Dinámico: Combos de main.js -->
                 </div>
             </section>
         </main>
@@ -81,9 +85,10 @@
             <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
         </div>
         <div class="cart-items" id="cart-items">
+            <!-- Items dinámicos -->
             <div class="cart-empty">
                 <i class="fas fa-shopping-basket"></i>
-                <p>Su carrito está vacío</p>
+                <p>Tu carrito está vacío</p>
             </div>
         </div>
         <div class="cart-footer">
@@ -101,7 +106,7 @@
     <script src="js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            if (typeof loadMovies === 'function') loadMovies();
+            if (typeof loadCombos === 'function') loadCombos();
         });
     </script>
 </body>
