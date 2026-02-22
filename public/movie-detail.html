@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMerk | Detalle de Película</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .movie-detail-container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-top: 2rem;
+        }
+
+        .movie-poster-box {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 20px;
+        }
+
+        .movie-poster-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .movie-info-box {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .movie-badge-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .movie-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: #fdf2f2;
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .movie-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-dark);
+        }
+
+        .movie-synopsis {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .movie-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .meta-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .meta-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        .times-grid {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .time-chip {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 14px 22px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            min-width: 80px;
+        }
+
+        .time-chip .chip-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
+            margin-bottom: 4px;
+        }
+
+        .time-chip:hover {
+            border-color: #c1121f;
+            color: #c1121f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(193, 18, 31, 0.12);
+        }
+
+        .time-chip.selected {
+            background: #c1121f;
+            color: white;
+            border-color: #c1121f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(193, 18, 31, 0.25);
+        }
+
+        .time-chip.selected .chip-label {
+            opacity: 0.8;
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .room-chip {
+            padding: 14px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .room-chip span {
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+
+        .room-chip:hover {
+            border-color: #c1121f;
+            color: #c1121f;
+            transform: translateY(-2px);
+        }
+
+        .room-chip.selected {
+            background: #c1121f;
+            color: white;
+            border-color: #c1121f;
+        }
+
+        .room-chip.selected span {
+            opacity: 0.85;
+        }
+
+        .purchase-controls {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .qty-input-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .qty-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid #e0e0e0;
+            background: white;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .qty-btn:hover {
+            border-color: #c1121f;
+            color: #c1121f;
+        }
+
+        #qty-display {
+            font-size: 2rem;
+            font-weight: 800;
+            min-width: 40px;
+            text-align: center;
+            color: #c1121f;
+        }
+
+        @media (max-width: 1000px) {
+            .movie-detail-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .movie-poster-box {
+                max-width: 400px;
+                margin: 0 auto;
+                position: relative;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-clapperboard"></i>
+                <span>Cine<span>Merk</span></span>
+            </div>
+            <nav class="nav-menu">
+                <a href="movies.html" class="nav-item active">
+                    <i class="fas fa-film"></i> Cartelera
+                </a>
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-hotdog"></i> Combos y Confitería
+                </a>
+                <a href="purchases.html" class="nav-item">
+                    <i class="fas fa-shopping-bag"></i> Mis Compras
+                </a>
+                <a href="payments.html" class="nav-item">
+                    <i class="fas fa-credit-card"></i> Formas de Pago
+                </a>
+                <a href="admin.html" id="admin-panel-link" class="nav-item"
+                    style="display: none; text-decoration: none;">
+                    <i class="fas fa-user-shield"></i> Panel Admin
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>© 2026 CineMerk</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1 id="page-title">Detalle de Película</h1>
+                <div class="user-profile" id="user-profile-header">
+                    <button class="cart-toggle" id="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </button>
+                    <div id="auth-buttons">
+                        <a href="login.html" class="btn btn-auth-login"><i class="fas fa-sign-in-alt"></i> Entrar</a>
+                        <a href="register.html" class="btn btn-auth-register"><i class="fas fa-user-plus"></i> Crear
+                            Cuenta</a>
+                    </div>
+                    <div id="user-info" style="display: none;" class="profile-summary">
+                        <img id="user-avatar" src="" alt="Usuario">
+                        <span id="user-name-display">Hola</span>
+                        <button class="btn-logout" id="logout-btn"><i class="fas fa-sign-out-alt"></i></button>
+                    </div>
+                </div>
+            </header>
+
+            <a href="movies.html" class="back-btn"><i class="fas fa-arrow-left"></i> Volver a Cartelera</a>
+
+            <div id="movie-detail" class="content-section active">
+                <div class="movie-detail-container">
+                    <div class="movie-poster-box">
+                        <img id="m-image" src="" alt="Cargando...">
+                    </div>
+                    <div class="movie-info-box">
+                        <div class="movie-badge-group">
+                            <span id="m-classification" class="movie-badge">TE</span>
+                            <span id="m-genre" class="movie-badge">GÉNERO</span>
+                        </div>
+                        <h2 id="m-title" class="movie-title">Cargando película...</h2>
+
+                        <div class="movie-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">Duración</span>
+                                <span id="m-duration" class="meta-value">N/A</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Fechas</span>
+                                <span id="m-dates" class="meta-value">N/A</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Precio Entrada</span>
+                                <span id="m-price-display" class="meta-value" style="color:#c1121f;">Elige sala</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h3 style="margin-bottom: 1rem;">Sinopsis</h3>
+                            <p id="m-synopsis" class="movie-synopsis">
+                                Cargando historia...
+                            </p>
+                        </div>
+
+                        <div class="purchase-controls">
+                            <div>
+                                <h3 style="margin-bottom: 1rem;"><i class="fas fa-clock"></i> 1. Selecciona el Horario
+                                </h3>
+                                <div id="m-times" class="times-grid">
+                                    <!-- Horarios dinámicos -->
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 style="margin-bottom: 1rem;"><i class="fas fa-door-open"></i> 2. Selecciona la Sala
+                                </h3>
+                                <div id="m-rooms" class="room-grid">
+                                    <!-- Salas dinámicas -->
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 style="margin-bottom: 1rem;"><i class="fas fa-users"></i> 3. Cantidad de personas
+                                </h3>
+                                <div class="qty-input-group">
+                                    <button class="qty-btn" id="qty-minus"><i class="fas fa-minus"></i></button>
+                                    <span id="qty-display">1</span>
+                                    <button class="qty-btn" id="qty-plus"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <button id="buy-ticket-btn" class="btn btn-primary"
+                                style="width: 100%; padding: 1.5rem; font-size: 1.3rem; border-radius: 15px;">
+                                <i class="fas fa-th"></i> Elegir Asientos y Reservar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Carrito -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Mi Carrito</h2>
+            <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total"><span>Total:</span><span id="cart-total-amount">₡0</span></div>
+            <button class="btn btn-primary" style="width: 100%;">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const currentUser = JSON.parse(localStorage.getItem('cinema_user'));
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const params = new URLSearchParams(window.location.search);
+            const movieId = params.get('id');
+            let selectedTime = null;
+            let selectedRoom = null;
+            let selectedSeats = [];
+            let currentMovie = null;
+
+            if (!movieId) {
+                window.location.href = 'movies.html';
+                return;
+            }
+
+            try {
+                const [mRes, rRes] = await Promise.all([
+                    fetch('/api/movies'),
+                    fetch('/api/rooms')
+                ]);
+                const movies = await mRes.json();
+                const rooms = await rRes.json();
+                currentMovie = movies.find(m => m.id === movieId);
+                const activeRooms = rooms.filter(r => r.status === 'operativa');
+
+                if (!currentMovie) {
+                    window.location.href = 'movies.html';
+                    return;
+                }
+
+                // Render detail
+                document.getElementById('m-image').src = currentMovie.image;
+                document.getElementById('m-title').textContent = currentMovie.title;
+                document.getElementById('m-classification').textContent = currentMovie.classification;
+                document.getElementById('m-genre').textContent = currentMovie.genre;
+                document.getElementById('m-duration').textContent = currentMovie.duration;
+                document.getElementById('m-dates').textContent = currentMovie.dates;
+                document.getElementById('m-synopsis').textContent = currentMovie.synopsis;
+
+                // Render Times con nuevo diseño
+                const timesGrid = document.getElementById('m-times');
+                const times = currentMovie.times.split(',').map(t => t.trim());
+                timesGrid.innerHTML = times.map(t => `
+                    <div class="time-chip" data-time="${t}">
+                        <span class="chip-label">Función</span>
+                        ${t}
+                    </div>
+                `).join('');
+
+                // Precios por tipo de sala
+                const ROOM_PRICES = {
+                    '2D': 3000,
+                    '3D': 4500,
+                    'IMAX': 6500,
+                    'VIP': 8000
+                };
+
+                function getRoomPrice(room) {
+                    return ROOM_PRICES[room.type] || 3500;
+                }
+
+                function formatPrice(n) {
+                    return '\u20a1' + n.toLocaleString('es-CR');
+                }
+
+                function updatePriceDisplay() {
+                    const priceEl = document.getElementById('m-price-display');
+                    if (!selectedRoom || !selectedQty) { priceEl.textContent = 'Elige sala'; return; }
+                    const room = activeRooms.find(r => r.name === selectedRoom);
+                    if (!room) return;
+                    const unitPrice = getRoomPrice(room);
+                    const total = unitPrice * selectedQty;
+                    priceEl.textContent = selectedQty > 1
+                        ? `${formatPrice(unitPrice)} × ${selectedQty} = ${formatPrice(total)}`
+                        : formatPrice(unitPrice);
+                }
+
+                // Render Rooms con precio en cada chip
+                const roomsGrid = document.getElementById('m-rooms');
+                if (activeRooms.length === 0) {
+                    roomsGrid.innerHTML = '<p style="color:#999;">No hay salas disponibles en este momento.</p>';
+                } else {
+                    roomsGrid.innerHTML = activeRooms.map(r => {
+                        const price = getRoomPrice(r);
+                        const priceColor = price >= 6500 ? '#d4af37' : price >= 4500 ? '#c1121f' : '#2d6a4f';
+                        return `
+                        <div class="room-chip" data-id="${r.name}" data-type="${r.type}" data-price="${price}">
+                            <strong>${r.name}</strong>
+                            <span>${r.type}</span>
+                            <span style="font-weight:800; color:${priceColor}; font-size:0.85rem; margin-top:2px;">${formatPrice(price)}</span>
+                        </div>`;
+                    }).join('');
+                }
+
+                // Qty Logic
+                let selectedQty = 1;
+                const qtyDisplay = document.getElementById('qty-display');
+                document.getElementById('qty-plus').onclick = () => {
+                    if (selectedQty < 10) { selectedQty++; qtyDisplay.textContent = selectedQty; updatePriceDisplay(); }
+                };
+                document.getElementById('qty-minus').onclick = () => {
+                    if (selectedQty > 1) { selectedQty--; qtyDisplay.textContent = selectedQty; updatePriceDisplay(); }
+                };
+
+                // Time selection
+                timesGrid.addEventListener('click', (e) => {
+                    const chip = e.target.closest('.time-chip');
+                    if (chip) {
+                        document.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
+                        chip.classList.add('selected');
+                        selectedTime = chip.dataset.time;
+                    }
+                });
+
+                // Room selection
+                roomsGrid.addEventListener('click', (e) => {
+                    const chip = e.target.closest('.room-chip');
+                    if (chip) {
+                        document.querySelectorAll('.room-chip').forEach(c => c.classList.remove('selected'));
+                        chip.classList.add('selected');
+                        selectedRoom = chip.dataset.id;
+                        updatePriceDisplay();
+                    }
+                });
+
+                document.getElementById('buy-ticket-btn').onclick = () => {
+                    if (!selectedTime) return Swal.fire({ title: 'Atención', text: 'Por favor selecciona un horario', icon: 'info', confirmButtonColor: '#c1121f' });
+                    if (!selectedRoom) return Swal.fire({ title: 'Atención', text: 'Por favor selecciona una sala', icon: 'info', confirmButtonColor: '#c1121f' });
+                    selectedSeats = [];
+                    openSeatPicker(selectedQty);
+                };
+
+                async function openSeatPicker(qty) {
+                    let occRes;
+                    let occupiedSeats = [];
+                    try {
+                        occRes = await fetch(`/api/tickets/occupied/${currentMovie.id}/${encodeURIComponent(selectedTime)}/${encodeURIComponent(selectedRoom)}`);
+                        if (occRes.ok) occupiedSeats = await occRes.json();
+                    } catch (err) { console.error('Error fetching occupied seats:', err); }
+
+                    const rows = ['A', 'B', 'C', 'D', 'E'];
+                    const cols = 10;
+                    const PRIMARY = '#c1121f';
+
+                    let seatHTML = `
+                        <div style="text-align:center; margin-bottom:12px;">
+                            <div style="background:linear-gradient(90deg,#555,#888,#555); height:6px; width:70%; margin:0 auto 6px; border-radius:4px;"></div>
+                            <span style="font-size:0.65rem; letter-spacing:3px; color:#999; text-transform:uppercase;">P A N T A L L A</span>
+                        </div>
+                        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:16px; font-size:0.7rem; color:#666;">
+                            <span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:14px;height:14px;background:#e0e0e0;border-radius:3px;display:inline-block;"></span>Libre</span>
+                            <span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:14px;height:14px;background:${PRIMARY};border-radius:3px;display:inline-block;"></span>Seleccionado</span>
+                            <span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:14px;height:14px;background:#bbb;border-radius:3px;display:inline-block;"></span>Ocupado</span>
+                        </div>
+                        <div id="seat-grid" style="display:grid; grid-template-columns: repeat(10, 34px); gap:6px; justify-content:center;">`;
+
+                    for (let r of rows) {
+                        for (let c = 1; c <= cols; c++) {
+                            const seatId = `${r}${c}`;
+                            const isOccupied = Array.isArray(occupiedSeats) && occupiedSeats.includes(seatId);
+                            seatHTML += `<div
+                                class="seat-btn"
+                                data-id="${seatId}"
+                                data-occupied="${isOccupied}"
+                                title="Asiento ${seatId}"
+                                style="width:34px;height:34px;border-radius:6px;background:${isOccupied ? '#bbb' : '#e0e0e0'};
+                                cursor:${isOccupied ? 'not-allowed' : 'pointer'};display:flex;
+                                align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;
+                                color:${isOccupied ? '#888' : '#444'};transition:background 0.15s;
+                                border:2px solid ${isOccupied ? '#aaa' : 'transparent'};"
+                            >${seatId}</div>`;
+                        }
+                    }
+                    seatHTML += '</div><div id="sel-info" style="margin-top:14px;font-weight:700;color:' + PRIMARY + ';text-align:center;">Seleccionados: 0/' + qty + '</div>';
+
+                    Swal.fire({
+                        title: `🎬 Elige tus ${qty} asiento${qty > 1 ? 's' : ''}`,
+                        html: seatHTML,
+                        width: 620,
+                        confirmButtonText: '✔ Confirmar Reserva',
+                        confirmButtonColor: '#c1121f',
+                        showCancelButton: true,
+                        cancelButtonText: 'Cancelar',
+                        didOpen: () => {
+                            const btns = document.querySelectorAll('.seat-btn');
+                            btns.forEach(s => {
+                                if (s.dataset.occupied === 'true') return;
+                                s.addEventListener('click', () => {
+                                    const id = s.dataset.id;
+                                    if (selectedSeats.includes(id)) {
+                                        selectedSeats = selectedSeats.filter(x => x !== id);
+                                        s.style.background = '#e0e0e0';
+                                        s.style.color = '#444';
+                                        s.style.border = '2px solid transparent';
+                                    } else if (selectedSeats.length < qty) {
+                                        selectedSeats.push(id);
+                                        s.style.background = PRIMARY;
+                                        s.style.color = 'white';
+                                        s.style.border = '2px solid #900';
+                                    }
+                                    document.getElementById('sel-info').textContent = `Seleccionados: ${selectedSeats.length}/${qty}`;
+                                });
+                            });
+                        },
+                        preConfirm: () => {
+                            if (selectedSeats.length !== qty) {
+                                Swal.showValidationMessage(`Elige exactamente ${qty} asiento${qty > 1 ? 's' : ''}`);
+                                return false;
+                            }
+                            return selectedSeats;
+                        }
+                    }).then(res => {
+                        if (res.isConfirmed) {
+                            const room = activeRooms.find(r => r.name === selectedRoom);
+                            const unitPrice = room ? getRoomPrice(room) : 3500;
+                            const totalPrice = unitPrice * qty;
+                            const ticketItem = {
+                                id: Date.now().toString(),
+                                movieId: currentMovie.id,
+                                movieTitle: currentMovie.title,
+                                roomName: selectedRoom,
+                                price: formatPrice(totalPrice),
+                                seats: [...selectedSeats],
+                                time: selectedTime,
+                                qty: qty,
+                                image: currentMovie.image,
+                                type: 'entrada',
+                                expiresAt: Date.now() + (10 * 60 * 1000)
+                            };
+                            window.addToCart(ticketItem);
+                            Swal.fire({
+                                icon: 'success',
+                                title: '¡Reservado!',
+                                html: `<p>Asientos: <b>${selectedSeats.join(', ')}</b></p>
+                                       <p style="margin-top:8px;">Tienes <b>10 min</b> para finalizar la compra.</p>`,
+                                timer: 5000,
+                                showConfirmButton: false
+                            });
+                        }
+                    });
+                }
+
+            } catch (e) {
+                console.error(e);
+            }
+        });
+    </script>
+</body>
+
+</html>

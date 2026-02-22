@@ -1,0 +1,310 @@
+console.log('ALIVE_V2');
+const express = require('express');
+const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '../public')));
+
+const MOVIES_FILE = path.join(__dirname, '../data/movies.json');
+const ROOMS_FILE = path.join(__dirname, '../data/rooms.json');
+const USERS_FILE = path.join(__dirname, '../data/users.json');
+const TICKETS_FILE = path.join(__dirname, '../data/tickets.json');
+const COMBOS_FILE = path.join(__dirname, '../data/combos.json');
+
+// Ensure data directory and files exist
+if (!fs.existsSync(path.join(__dirname, '../data'))) {
+    fs.mkdirSync(path.join(__dirname, '../data'));
+}
+
+const initializeFile = (file, initialData) => {
+    if (!fs.existsSync(file)) {
+        fs.writeFileSync(file, JSON.stringify(initialData, null, 2));
+    }
+};
+
+initializeFile(MOVIES_FILE, []);
+initializeFile(ROOMS_FILE, []);
+initializeFile(USERS_FILE, []);
+initializeFile(TICKETS_FILE, []);
+initializeFile(COMBOS_FILE, [
+    {
+        id: uuidv4(),
+        name: "Combo Pareja",
+        description: "2 palomitas grandes + 2 bebidas medianas + 1 dulce",
+        price: "₡12000",
+        size: "Grande",
+        items: ["Palomitas", "Bebidas", "Dulces"],
+        image: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?q=80&w=500&auto=format&fit=crop",
+        status: "activo"
+    },
+    {
+        id: uuidv4(),
+        name: "Combo Familiar",
+        description: "4 palomitas medianas + 4 bebidas pequeñas + 2 nachos",
+        price: "₡18500",
+        size: "Familiar",
+        items: ["Palomitas", "Bebidas", "Nachos"],
+        image: "https://images.unsplash.com/photo-1585647347384-2593bc35786b?q=80&w=500&auto=format&fit=crop",
+        status: "activo"
+    },
+    {
+        id: uuidv4(),
+        name: "Combo Kids",
+        description: "1 palomita pequeña + 1 jugo + 1 sorpresa",
+        price: "₡5500",
+        size: "Pequeño",
+        items: ["Palomitas", "Bebidas", "Juguete"],
+        image: "https://images.unsplash.com/photo-1594433766904-46966144e78d?q=80&w=500&auto=format&fit=crop",
+        status: "activo"
+    },
+    {
+        id: uuidv4(),
+        name: "Mega Nachos",
+        description: "Nachos extra grandes con queso y jalapeños + 1 bebida grande",
+        price: "₡7500",
+        size: "Extragrande",
+        items: ["Nachos", "Bebidas"],
+        image: "https://images.unsplash.com/photo-1512485800893-b08ec1ea59b1?q=80&w=500&auto=format&fit=crop",
+        status: "inactivo"
+    }
+]);
+
+const readData = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+const writeData = (file, data) => fs.writeFileSync(file, JSON.stringify(data, null, 2));
+
+// Movies CRUD
+app.get('/api/movies', (req, res) => {
+    res.json(readData(MOVIES_FILE));
+});
+
+app.post('/api/movies', (req, res) => {
+    const movies = readData(MOVIES_FILE);
+    const newMovie = { ...req.body, id: uuidv4() };
+    movies.push(newMovie);
+    writeData(MOVIES_FILE, movies);
+    res.status(201).json(newMovie);
+});
+
+app.put('/api/movies/:id', (req, res) => {
+    const movies = readData(MOVIES_FILE);
+    const index = movies.findIndex(m => m.id === req.params.id);
+    if (index !== -1) {
+        movies[index] = { ...req.body, id: req.params.id };
+        writeData(MOVIES_FILE, movies);
+        res.json(movies[index]);
+    } else {
+        res.status(404).json({ message: 'Movie not found' });
+    }
+});
+
+app.delete('/api/movies/:id', (req, res) => {
+    let movies = readData(MOVIES_FILE);
+    movies = movies.filter(m => m.id !== req.params.id);
+    writeData(MOVIES_FILE, movies);
+    res.status(204).send();
+});
+
+// Rooms CRUD
+app.get('/api/rooms', (req, res) => {
+    res.json(readData(ROOMS_FILE));
+});
+
+app.post('/api/rooms', (req, res) => {
+    const rooms = readData(ROOMS_FILE);
+    const newRoom = { ...req.body, id: uuidv4() };
+    rooms.push(newRoom);
+    writeData(ROOMS_FILE, rooms);
+    res.status(201).json(newRoom);
+});
+
+app.put('/api/rooms/:id', (req, res) => {
+    const rooms = readData(ROOMS_FILE);
+    const index = rooms.findIndex(r => r.id === req.params.id);
+    if (index !== -1) {
+        rooms[index] = { ...req.body, id: req.params.id };
+        writeData(ROOMS_FILE, rooms);
+        res.json(rooms[index]);
+    } else {
+        res.status(404).json({ message: 'Room not found' });
+    }
+});
+
+app.delete('/api/rooms/:id', (req, res) => {
+    let rooms = readData(ROOMS_FILE);
+    rooms = rooms.filter(r => r.id !== req.params.id);
+    writeData(ROOMS_FILE, rooms);
+    res.status(204).send();
+});
+
+// --- Auth & Users ---
+app.post('/api/auth/register', (req, res) => {
+    const users = readData(USERS_FILE);
+    const { username, password, firstName, lastName, phone, email, idCard, birthDate } = req.body;
+
+    if (users.find(u => u.username === username)) {
+        return res.status(400).json({ message: 'El usuario ya existe' });
+    }
+
+    const newUser = {
+        id: uuidv4(),
+        username,
+        password,
+        firstName,
+        lastName,
+        phone,
+        email,
+        idCard,
+        birthDate,
+        role: username === 'admin' ? 'admin' : 'user'
+    };
+
+    users.push(newUser);
+    writeData(USERS_FILE, users);
+    res.status(201).json(newUser);
+});
+
+app.post('/api/auth/login', (req, res) => {
+    const users = readData(USERS_FILE);
+    const { username, password } = req.body;
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+        res.json(user);
+    } else {
+        res.status(401).json({ message: 'Credenciales inválidas' });
+    }
+});
+
+app.get('/api/users', (req, res) => {
+    const users = readData(USERS_FILE);
+    const safeUsers = users.map(({ password, ...u }) => u);
+    res.json(safeUsers);
+});
+
+// --- Combos Endpoints ---
+app.get('/api/combos', (req, res) => {
+    res.json(readData(COMBOS_FILE));
+});
+
+app.post('/api/combos', (req, res) => {
+    const combos = readData(COMBOS_FILE);
+    const newCombo = { ...req.body, id: uuidv4() };
+    combos.push(newCombo);
+    writeData(COMBOS_FILE, combos);
+    res.status(201).json(newCombo);
+});
+
+app.put('/api/combos/:id', (req, res) => {
+    const combos = readData(COMBOS_FILE);
+    const index = combos.findIndex(c => c.id === req.params.id);
+    if (index !== -1) {
+        combos[index] = { ...req.body, id: req.params.id };
+        writeData(COMBOS_FILE, combos);
+        res.json(combos[index]);
+    } else {
+        res.status(404).send();
+    }
+});
+
+// --- Tickets Endpoints ---
+app.post('/api/tickets/purchase', (req, res) => {
+    const { userId, movieId, movieTitle, roomName, price } = req.body;
+    const tickets = readData(TICKETS_FILE);
+
+    const newTicket = {
+        id: uuidv4(),
+        userId,
+        username: req.body.username || 'unknown',
+        movieId,
+        movieTitle,
+        roomName,
+        price,
+        date: new Date().toISOString(),
+        status: 'active' // active, used
+    };
+
+    tickets.push(newTicket);
+    writeData(TICKETS_FILE, tickets);
+    res.status(201).json(newTicket);
+});
+
+app.get('/api/tickets/user/:userId', (req, res) => {
+    const tickets = readData(TICKETS_FILE);
+    const userId = req.params.userId;
+    const isAdmin = req.query.isAdmin === 'true';
+
+    // If admin, show all. If user, show only theirs.
+    const filtered = isAdmin ? tickets : tickets.filter(t => t.userId === userId);
+    res.json(filtered);
+});
+
+app.delete('/api/tickets/:id', (req, res) => {
+    let tickets = readData(TICKETS_FILE);
+    tickets = tickets.filter(t => t.id !== req.params.id);
+    writeData(TICKETS_FILE, tickets);
+    res.json({ message: 'Ticket eliminado' });
+});
+
+app.patch('/api/tickets/:id/use', (req, res) => {
+    const tickets = readData(TICKETS_FILE);
+    const index = tickets.findIndex(t => t.id === req.params.id);
+    if (index !== -1) {
+        tickets[index].status = 'used';
+        writeData(TICKETS_FILE, tickets);
+        res.json(tickets[index]);
+    } else {
+        res.status(404).send();
+    }
+});
+
+app.get('/api/users/:id', (req, res) => {
+    const users = readData(USERS_FILE);
+    const user = users.find(u => u.id === req.params.id);
+    if (user) {
+        const { password, ...safeUser } = user;
+        res.json(safeUser);
+    } else {
+        res.status(404).send();
+    }
+});
+
+app.delete('/api/users/:id', (req, res) => {
+    let users = readData(USERS_FILE);
+    const userToDelete = users.find(u => u.id === req.params.id);
+
+    if (userToDelete?.username === 'admin_admin') {
+        return res.status(403).json({ message: 'No se puede eliminar al administrador principal' });
+    }
+
+    users = users.filter(u => u.id !== req.params.id);
+    writeData(USERS_FILE, users);
+    res.json({ message: 'Usuario eliminado' });
+});
+
+app.patch('/api/users/:id/role', (req, res) => {
+    const users = readData(USERS_FILE);
+    const { role } = req.body;
+    const index = users.findIndex(u => u.id === req.params.id);
+
+    if (index !== -1) {
+        if (users[index].username === 'admin_admin') {
+            return res.status(403).json({ message: 'No se puede cambiar el rol del administrador principal' });
+        }
+        users[index].role = role;
+        writeData(USERS_FILE, users);
+        res.json(users[index]);
+    } else {
+        res.status(404).send();
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});

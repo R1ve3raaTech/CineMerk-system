@@ -1,0 +1,53 @@
+[
+  {
+    "id": "admin-0",
+    "username": "admin_admin",
+    "password": "admin",
+    "firstName": "Admin",
+    "lastName": "Master",
+    "email": "master@cinemaster.com",
+    "phone": "0000-0000",
+    "idCard": "0-0000-0000",
+    "birthDate": "1990-01-01",
+    "role": "admin",
+    "tarjetaMerk": {
+      "number": "MERK-ADMIN123",
+      "balance": 99939999,
+      "createdAt": "2026-02-21T00:00:00.000Z"
+    }
+  },
+  {
+    "id": "979193bb-b21c-43d6-b5cb-b817438b0694",
+    "username": "asdf11",
+    "password": "asdf",
+    "firstName": "camil",
+    "lastName": "rivera",
+    "phone": "111111",
+    "email": "asdf@gmail.com",
+    "idCard": "asdf",
+    "birthDate": "1222-12-12",
+    "role": "user",
+    "tarjetaMerk": {
+      "number": "MERK-XYZ9876",
+      "balance": 42000,
+      "createdAt": "2026-02-21T00:00:00.000Z"
+    }
+  },
+  {
+    "id": "a080eb77-3a42-43c2-a7ba-348d5a8ad9f3",
+    "username": "mari79",
+    "password": "asdf",
+    "firstName": "maria",
+    "lastName": "rodriguez",
+    "phone": "11111111",
+    "email": "adsklfjaklsj@gmail.com",
+    "idCard": "15581124<6329",
+    "birthDate": "1979-05-23",
+    "role": "user",
+    "tarjetaMerk": {
+      "number": "MERK-6NSYHOYT",
+      "balance": 26200,
+      "createdAt": "2026-02-22T01:52:18.612Z"
+    }
+  }
+]

@@ -1,0 +1,139 @@
+[
+  {
+    "id": "686d2cfe-fdcc-4d57-8f04-0adf0b35d44d",
+    "orderId": "ORD-MLX21QMJ",
+    "userId": "979193bb-b21c-43d6-b5cb-b817438b0694",
+    "username": "asdf11",
+    "items": [
+      {
+        "id": "1771722101040",
+        "movieId": "2",
+        "movieTitle": "Spider-Man: Across the Spider-Verse",
+        "roomName": "Sala 202 - VIP",
+        "price": "₡8 000",
+        "seats": [
+          "E6"
+        ],
+        "time": "19:00",
+        "qty": 1,
+        "image": "images/spidermanacross.jpg",
+        "type": "entrada",
+        "expiresAt": 1771722701040
+      }
+    ],
+    "total": 8000,
+    "paymentMethod": "TarjetaMerk",
+    "date": "2026-02-22T01:14:23.371Z",
+    "status": "completed"
+  },
+  {
+    "id": "7b09c36a-b1cc-48f0-90fe-6c8813ba9a30",
+    "orderId": "ORD-MLX24EHK",
+    "userId": "979193bb-b21c-43d6-b5cb-b817438b0694",
+    "username": "asdf11",
+    "items": [
+      {
+        "name": "Combo VIP Diamond",
+        "price": "₡12000",
+        "image": "images/Combo VIP diamobnd.png",
+        "type": "food"
+      }
+    ],
+    "total": 12000,
+    "paymentMethod": "Visa *5676",
+    "date": "2026-02-22T01:16:27.608Z",
+    "status": "completed"
+  },
+  {
+    "id": "d236072d-f89c-4f75-8717-0899bb4ca973",
+    "orderId": "ORD-MLX2W1KS",
+    "userId": "admin-0",
+    "username": "admin_admin",
+    "items": [
+      {
+        "id": "1771724241010",
+        "movieId": "6",
+        "movieTitle": "FNAF Movie 2",
+        "roomName": "Sala 202 - VIP",
+        "price": "₡24 000",
+        "seats": [
+          "C4",
+          "C5",
+          "C6"
+        ],
+        "time": "23:59",
+        "qty": 3,
+        "image": "images/fnafmovie2.jpg",
+        "type": "entrada",
+        "expiresAt": 1771724841010
+      },
+      {
+        "name": "Combo VIP Diamond",
+        "price": "₡12000",
+        "image": "images/Combo VIP diamobnd.png",
+        "type": "food"
+      },
+      {
+        "name": "Combo VIP Diamond",
+        "price": "₡12000",
+        "image": "images/Combo VIP diamobnd.png",
+        "type": "food"
+      },
+      {
+        "name": "Combo VIP Diamond",
+        "price": "₡12000",
+        "image": "images/Combo VIP diamobnd.png",
+        "type": "food"
+      }
+    ],
+    "total": 60000,
+    "paymentMethod": "TarjetaMerk",
+    "date": "2026-02-22T01:37:57.244Z",
+    "status": "completed"
+  },
+  {
+    "id": "e51fd4e6-952e-42cf-bee2-4337edb3124c",
+    "orderId": "ORD-MLX3T1J5",
+    "userId": "a080eb77-3a42-43c2-a7ba-348d5a8ad9f3",
+    "username": "mari79",
+    "items": [
+      {
+        "id": "1771725186885",
+        "movieId": "7",
+        "movieTitle": "Scream 7",
+        "roomName": "Sala 202 - VIP",
+        "price": "₡8 000",
+        "seats": [
+          "E6"
+        ],
+        "time": "22:30",
+        "qty": 1,
+        "image": "images/scream7.jpg",
+        "type": "entrada",
+        "expiresAt": 1771725786885
+      },
+      {
+        "name": "Nachos Supreme",
+        "price": "₡3800",
+        "image": "images/nachos.png",
+        "type": "food"
+      },
+      {
+        "name": "Combo Pareja Premium",
+        "price": "₡7500",
+        "image": "images/parejas-combo.png",
+        "type": "food"
+      },
+      {
+        "name": "Hamburguesa Angus Gold",
+        "price": "₡4500",
+        "image": "images/angus-gold.png",
+        "type": "food"
+      }
+    ],
+    "total": 23800,
+    "paymentMethod": "TarjetaMerk",
+    "date": "2026-02-22T02:03:36.833Z",
+    "status": "completed"
+  }
+]

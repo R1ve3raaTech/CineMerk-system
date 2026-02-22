@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Sala D1 - IMAX",
+    "type": "IMAX",
+    "capacity": "350",
+    "status": "operativa",
+    "id": "1"
+  },
+  {
+    "name": "Sala C1 - VIP",
+    "type": "VIP",
+    "capacity": "45",
+    "status": "operativa",
+    "id": "2"
+  },
+  {
+    "name": "Sala B1 - 3D",
+    "type": "3D",
+    "capacity": "200",
+    "status": "mantenimiento",
+    "id": "3"
+  },
+  {
+    "name": "Sala A1 - Estándar",
+    "type": "2D",
+    "capacity": "180",
+    "status": "operativa",
+    "id": "4"
+  },
+  {
+    "name": "Sala B2 - 3D",
+    "type": "2D",
+    "capacity": "100",
+    "status": "operativa",
+    "id": "69e143c4-ee95-46ae-beea-e33cda2eccbf"
+  }
+]

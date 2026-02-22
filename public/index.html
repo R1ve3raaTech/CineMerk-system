@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMerk | Combos y Confitería</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-clapperboard"></i>
+                <span>Cine<span>Merk</span></span>
+            </div>
+            <nav class="nav-menu">
+                <a href="movies.html" class="nav-item">
+                    <i class="fas fa-film"></i> Cartelera
+                </a>
+                <a href="index.html" class="nav-item active">
+                    <i class="fas fa-hotdog"></i> Combos y Confitería
+                </a>
+                <a href="purchases.html" class="nav-item">
+                    <i class="fas fa-shopping-bag"></i> Mis Compras
+                </a>
+                <a href="payments.html" class="nav-item">
+                    <i class="fas fa-credit-card"></i> Formas de Pago
+                </a>
+                <a href="admin.html" id="admin-panel-link" class="nav-item"
+                    style="display: none; text-decoration: none;">
+                    <i class="fas fa-user-shield"></i> Panel Admin
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>© 2026 CineMerk</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1 id="page-title">Combos y Confitería</h1>
+                <div class="user-profile" id="user-profile-header">
+                    <button class="cart-toggle" id="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </button>
+                    <div id="auth-buttons">
+                        <a href="login.html" class="btn btn-auth-login"><i class="fas fa-sign-in-alt"></i> Entrar</a>
+                        <a href="register.html" class="btn btn-auth-register"><i class="fas fa-user-plus"></i> Crear
+                            Cuenta</a>
+                    </div>
+                    <div id="user-info" style="display: none;" class="profile-summary">
+                        <img id="user-avatar" src="" alt="Usuario">
+                        <span id="user-name-display">Hola</span>
+                        <button class="btn-logout" id="logout-btn"><i class="fas fa-sign-out-alt"></i></button>
+                    </div>
+                </div>
+            </header>
+
+            <section class="content-section active">
+                <div class="section-header">
+                    <h2>Combos y Alimentos</h2>
+                    <p style="color:var(--text-muted)">¡Disfruta de nuestros snacks especiales!</p>
+                </div>
+                <div id="combos-list" class="movies-grid">
+                    <!-- Dinámico: Combos de main.js -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Carrito Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Mi Carrito</h2>
+            <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items dinámicos -->
+            <div class="cart-empty">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Tu carrito está vacío</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-amount">₡0</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" id="checkout-btn">
+                Finalizar Compra
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof loadCombos === 'function') loadCombos();
+        });
+    </script>
+</body>
+
+</html>

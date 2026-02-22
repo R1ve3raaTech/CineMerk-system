@@ -1,0 +1,92 @@
+[
+  {
+    "id": "c1",
+    "name": "Combo VIP Diamond",
+    "description": "2 Palomitas XL + 2 Refrescos Grandes + 2 Hot Dogs Premium + Chocolates Ferrero + Sofá Reservado",
+    "price": "₡12000",
+    "size": "Élite",
+    "type": "combo",
+    "image": "images/Combo VIP diamobnd.png",
+    "status": "activo"
+  },
+  {
+    "id": "c2",
+    "name": "Combo Pareja Premium",
+    "description": "2 palomitas grandes + 2 bebidas medianas + 2 postres gourmet",
+    "price": "₡7500",
+    "size": "Grande",
+    "type": "combo",
+    "image": "images/parejas-combo.png",
+    "status": "activo"
+  },
+  {
+    "id": "c3",
+    "name": "Combo Familiar XL",
+    "description": "4 palomitas medianas + 4 bebidas + 2 nachos + 2 hot dogs",
+    "price": "₡10000",
+    "size": "Familiar",
+    "type": "combo",
+    "image": "images/combo-familiar-xl.png",
+    "status": "activo"
+  },
+  {
+    "id": "c4",
+    "name": "Combo Kids Mágico",
+    "description": "Palomitas pequeñas + Jugo Natural + Juguete Coleccionable + Kinder Sorpresa",
+    "price": "₡3500",
+    "size": "Pequeño",
+    "type": "combo",
+    "image": "images/kids-magico.png",
+    "status": "activo"
+  },
+  {
+    "id": "i1",
+    "name": "Hamburguesa Angus Gold",
+    "description": "Carne Angus 250g, queso brie, cebolla caramelizada y papas trufadas",
+    "price": "₡4500",
+    "size": "Premium",
+    "type": "individual",
+    "image": "images/angus-gold.png",
+    "status": "activo"
+  },
+  {
+    "id": "i3",
+    "name": "Milkshake Oreo Deluxe",
+    "description": "Malteada cremosa con trozos de Oreo, crema batida y sirope de chocolate",
+    "price": "₡2500",
+    "size": "Grande",
+    "type": "individual",
+    "image": "images/milkshake.png",
+    "status": "activo"
+  },
+  {
+    "id": "i4",
+    "name": "Nachos Supreme",
+    "description": "Extra queso, Chili con carne, jalapeños y guacamole fresco",
+    "price": "₡3800",
+    "size": "Extragrande",
+    "type": "individual",
+    "image": "images/nachos.png",
+    "status": "activo"
+  },
+  {
+    "name": "Combo Individual",
+    "description": "1 palomita mediana y 1 refresco Mediano",
+    "price": "₡3500",
+    "size": "Mediano",
+    "image": "https://cuponassets.cuponatic-latam.com/backendMx/uploads/imagenes_descuentos/112461/028ec94a2e50f84c53d3fd81724f9c34a14efa92.XL2.jpg",
+    "status": "activo",
+    "type": "combo",
+    "id": "f47a011d-bbd0-4997-aba5-1eb21d6799c9"
+  },
+  {
+    "name": "Combo De Temporada",
+    "description": "1 palomita pequeña, 1 hot dog, 1 refresco mediano, 2 dulces",
+    "price": "₡5500",
+    "size": "Mediano",
+    "image": "images/combodetemporada.png",
+    "status": "activo",
+    "type": "combo",
+    "id": "d54015ca-1b20-4a8a-a82a-38d9084d130b"
+  }
+]
