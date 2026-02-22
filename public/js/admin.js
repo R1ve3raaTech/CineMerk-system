@@ -99,8 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         tbody.innerHTML = movies.map(m => `
-            <tr>
-                <td><img src="${m.image}" width="48" height="68" style="border-radius:8px; object-fit:cover;"></td>
+            <tr data-id="${m.id}">
+                <td>
+                    <div style="display:flex; align-items:center;">
+                        <i class="fas fa-grip-lines drag-handle" style="cursor: grab; color: #ccc; margin-right: 15px; font-size: 1.2rem;" title="Arrastrar para mover"></i>
+                        <img src="${m.image}" width="48" height="68" style="border-radius:8px; object-fit:cover;">
+                    </div>
+                </td>
                 <td>
                     <strong>${m.title}</strong><br>
                     <span style="font-size:0.78rem; color:#888;">${m.duration} · ${m.classification}</span>
@@ -110,10 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td><span class="status-badge status-${m.status}">${m.status === 'active' ? 'Activa' : 'Inactiva'}</span></td>
                 <td>
                     <button class="btn btn-secondary btn-sm" title="Editar" onclick="editMovie('${m.id}')"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-secondary btn-sm" title="Eliminar" style="color:#c1121f" onclick="deleteMovie('${m.id}')"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-secondary btn-sm" title="Eliminar" style="color:#c1121f;" onclick="deleteMovie('${m.id}')"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
         `).join('');
+        initSortableTable('admin-movies-list', 'movies');
     }
 
     window.editMovie = async (id) => {
@@ -191,8 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
         tbody.innerHTML = rooms.map(r => {
             const statusColor = r.status === 'operativa' ? '#2d6a4f' : r.status === 'mantenimiento' ? '#e76f51' : '#888';
             return `
-            <tr>
+            <tr data-id="${r.id}">
                 <td>
+                    <i class="fas fa-grip-lines drag-handle" style="cursor: grab; color: #ccc; margin-right: 15px; font-size: 1.2rem;" title="Arrastrar para mover"></i>
                     <strong>${r.name}</strong>
                 </td>
                 <td><span style="background:#e8f4fd; color:#0077b6; padding:3px 10px; border-radius:20px; font-size:0.82rem; font-weight:700;">${r.type}</span></td>
@@ -204,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </td>
             </tr>`;
         }).join('');
+        initSortableTable('admin-rooms-list', 'rooms');
     }
 
     window.editRoom = async (id) => {
@@ -233,6 +241,36 @@ document.addEventListener('DOMContentLoaded', () => {
             await fetch(`/api/rooms/${id}`, { method: 'DELETE' });
             loadRooms();
             Swal.fire({ icon: 'success', title: 'Sala eliminada', timer: 1200, showConfirmButton: false });
+        }
+    };
+
+    window.initSortableTable = (tbodyId, resourceName) => {
+        const el = document.getElementById(tbodyId);
+        if (el && window.Sortable) {
+            if (el.sortableInstance) el.sortableInstance.destroy();
+            el.sortableInstance = new Sortable(el, {
+                animation: 150,
+                handle: '.drag-handle',
+                ghostClass: 'sortable-ghost',
+                onEnd: async function () {
+                    const rows = el.querySelectorAll('tr[data-id]');
+                    const order = Array.from(rows).map(row => row.getAttribute('data-id'));
+                    if (order.length > 0) {
+                        try {
+                            const res = await fetch(`/api/${resourceName}/reorder`, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ order })
+                            });
+                            if (res.ok) {
+                                Swal.fire({ toast: true, position: 'bottom-end', icon: 'success', title: 'Orden guardado', showConfirmButton: false, timer: 1000 });
+                            }
+                        } catch (e) {
+                            console.error(e);
+                        }
+                    }
+                }
+            });
         }
     };
 
@@ -470,9 +508,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         tbody.innerHTML = combos.map(c => `
-            <tr>
+            <tr data-id="${c.id}">
                 <td>
                     <div style="display:flex; align-items:center;">
+                        <i class="fas fa-grip-lines drag-handle" style="cursor: grab; color: #ccc; margin-right: 15px; font-size: 1.2rem;" title="Arrastrar para mover"></i>
                         <img src="${c.image}" style="width:40px; height:40px; border-radius:8px; object-fit:cover; margin-right:10px;">
                         <div>
                             <span style="font-weight:700;">${c.name}</span><br>
@@ -484,11 +523,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td style="font-weight:700;">${c.price}</td>
                 <td><span class="status-badge status-${c.status}">${c.status === 'activo' ? 'Activo' : 'Inactivo'}</span></td>
                 <td>
-                    <button class="btn btn-secondary btn-sm" onclick='editCombo(${JSON.stringify(c).replace(/'/g, "&#39;")})'><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-secondary btn-sm" style="color:#c1121f;" onclick="deleteCombo('${c.id}')"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-secondary btn-sm" title="Editar" onclick='editCombo(${JSON.stringify(c).replace(/'/g, "&#39;")})'><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-secondary btn-sm" title="Eliminar" style="color:#c1121f;" onclick="deleteCombo('${c.id}')"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
         `).join('');
+        initSortableTable('admin-combos-list', 'combos');
     }
 
     window.editCombo = (c) => {

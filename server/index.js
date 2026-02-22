@@ -120,6 +120,27 @@ initializeFile(COMBOS_FILE, [
 const readData = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const writeData = (file, data) => fs.writeFileSync(file, JSON.stringify(data, null, 2));
 
+// --- Drag and Drop Reorder Endpoints ---
+const handleReorder = (fileKey, req, res) => {
+    const { order } = req.body;
+    if (!order || !Array.isArray(order)) return res.status(400).json({ error: 'Invalid order array' });
+    let data = readData(fileKey);
+    const newData = [];
+    order.forEach(id => {
+        const item = data.find(i => i.id === id);
+        if (item) newData.push(item);
+    });
+    data.forEach(item => {
+        if (!order.includes(item.id)) newData.push(item);
+    });
+    writeData(fileKey, newData);
+    res.json(newData);
+};
+
+app.put('/api/rooms/reorder', (req, res) => handleReorder(ROOMS_FILE, req, res));
+app.put('/api/movies/reorder', (req, res) => handleReorder(MOVIES_FILE, req, res));
+app.put('/api/combos/reorder', (req, res) => handleReorder(COMBOS_FILE, req, res));
+
 // Movies CRUD
 app.get('/api/movies', (req, res) => {
     res.json(readData(MOVIES_FILE));

@@ -14,6 +14,13 @@
     "id": "2"
   },
   {
+    "name": "Sala B2 - 3D",
+    "type": "2D",
+    "capacity": "100",
+    "status": "operativa",
+    "id": "69e143c4-ee95-46ae-beea-e33cda2eccbf"
+  },
+  {
     "name": "Sala B1 - 3D",
     "type": "3D",
     "capacity": "200",
@@ -21,17 +28,17 @@
     "id": "3"
   },
   {
-    "name": "Sala A1 - Estándar",
+    "name": "Sala A2 - Estándar",
     "type": "2D",
-    "capacity": "180",
+    "capacity": "80",
     "status": "operativa",
-    "id": "4"
+    "id": "94926e1c-a8ed-41ec-82d9-24ca565347ad"
   },
   {
-    "name": "Sala B2 - 3D",
+    "name": "Sala A1 - Estándar",
     "type": "2D",
-    "capacity": "100",
+    "capacity": "80",
     "status": "operativa",
-    "id": "69e143c4-ee95-46ae-beea-e33cda2eccbf"
+    "id": "4"
   }
 ]
