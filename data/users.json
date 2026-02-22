@@ -12,7 +12,7 @@
     "role": "admin",
     "tarjetaMerk": {
       "number": "MERK-ADMIN123",
-      "balance": 99706999,
+      "balance": 100000000,
       "createdAt": "2026-02-21T00:00:00.000Z"
     }
   },
