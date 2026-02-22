@@ -135,5 +135,128 @@
     "paymentMethod": "TarjetaMerk",
     "date": "2026-02-22T02:03:36.833Z",
     "status": "completed"
+  },
+  {
+    "id": "e1159ebe-40db-497d-84fa-100f3d91f2db",
+    "orderId": "ORD-MLX864A7",
+    "userId": "admin-0",
+    "username": "admin_admin",
+    "items": [
+      {
+        "id": "1771732447784",
+        "movieId": "2",
+        "movieTitle": "Spider-Man: Across the Spider-Verse",
+        "roomName": "Sala A2 - Estándar",
+        "price": "₡3 000",
+        "seats": [
+          "E5"
+        ],
+        "time": "19:00",
+        "qty": 1,
+        "image": "images/spidermanacross.jpg",
+        "type": "entrada",
+        "expiresAt": 1771733047784
+      }
+    ],
+    "total": 3000,
+    "paymentMethod": "TarjetaMerk",
+    "date": "2026-02-22T04:05:45.391Z",
+    "status": "completed"
+  },
+  {
+    "id": "5251f3ef-45be-411b-99d1-6cd64d65b388",
+    "orderId": "ORD-MLXH67HT",
+    "userId": "e0610ccd-622f-49f4-a7b2-1f5d8494c366",
+    "username": "r1ve3raa__",
+    "items": [
+      {
+        "id": "1771748215033",
+        "movieId": "2",
+        "movieTitle": "Spider-Man: Across the Spider-Verse",
+        "roomName": "Sala A2 - Estándar",
+        "price": "₡9 000",
+        "seats": [
+          "E4",
+          "E5",
+          "E6"
+        ],
+        "time": "16:30",
+        "qty": 3,
+        "image": "images/spidermanacross.jpg",
+        "type": "entrada",
+        "expiresAt": 1771748815033
+      },
+      {
+        "name": "Combo Individual",
+        "price": "₡7000",
+        "image": "https://cuponassets.cuponatic-latam.com/backendMx/uploads/imagenes_descuentos/112461/028ec94a2e50f84c53d3fd81724f9c34a14efa92.XL2.jpg",
+        "type": "food"
+      },
+      {
+        "name": "Nachos Supreme",
+        "price": "₡6800",
+        "image": "images/nachos.png",
+        "type": "food"
+      },
+      {
+        "name": "Nachos Supreme",
+        "price": "₡6800",
+        "image": "images/nachos.png",
+        "type": "food"
+      },
+      {
+        "name": "Combo De Temporada",
+        "price": "₡11000",
+        "image": "images/combodetemporada.png",
+        "type": "food"
+      }
+    ],
+    "total": 40600,
+    "paymentMethod": "TarjetaMerk",
+    "date": "2026-02-22T08:17:46.097Z",
+    "status": "completed"
+  },
+  {
+    "id": "364db59c-5f97-4474-9bf6-2dbb841030b7",
+    "orderId": "ORD-MLXH94IV",
+    "userId": "admin-0",
+    "username": "admin_admin",
+    "items": [
+      {
+        "id": "1771748362756",
+        "movieId": "7",
+        "movieTitle": "Scream 7",
+        "roomName": "Sala C1 - VIP",
+        "price": "₡80 000",
+        "seats": [
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "E7",
+          "E5",
+          "E6",
+          "E4",
+          "C5",
+          "C6"
+        ],
+        "time": "22:30",
+        "qty": 10,
+        "image": "images/scream7.jpg",
+        "type": "entrada",
+        "expiresAt": 1771748962756
+      },
+      {
+        "name": "Combo Pareja Premium",
+        "price": "₡150 000",
+        "image": "images/parejas-combo.png",
+        "type": "food",
+        "qty": 10
+      }
+    ],
+    "total": 230000,
+    "paymentMethod": "TarjetaMerk",
+    "date": "2026-02-22T08:20:02.215Z",
+    "status": "completed"
   }
 ]

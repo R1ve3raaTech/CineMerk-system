@@ -15,7 +15,7 @@
   },
   {
     "name": "Sala B2 - 3D",
-    "type": "2D",
+    "type": "3D",
     "capacity": "100",
     "status": "operativa",
     "id": "69e143c4-ee95-46ae-beea-e33cda2eccbf"
