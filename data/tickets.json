@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "3848c10c-d743-47cb-9758-a3856cdf81fc",
+    "orderId": "e6ea21e4-f0e0-40bc-87d2-30b4d341ff23",
+    "userId": "admin-0",
+    "username": "admin_admin",
+    "movieId": "421e2e54-2446-46db-91f5-763e5cd0adfc",
+    "movieTitle": "Super Mario Galaxy: La Películo",
+    "roomName": "Sala A1 - Estándar",
+    "price": "₡3 000",
+    "seats": [
+      "E5"
+    ],
+    "time": "18:30",
+    "qty": 1,
+    "type": "entrada",
+    "date": "2026-02-22T08:26:19.241Z",
+    "status": "active"
+  }
+]

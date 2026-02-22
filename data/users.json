@@ -12,7 +12,7 @@
     "role": "admin",
     "tarjetaMerk": {
       "number": "MERK-ADMIN123",
-      "balance": 100000000,
+      "balance": 99997000,
       "createdAt": "2026-02-21T00:00:00.000Z"
     }
   },
@@ -22,7 +22,7 @@
     "password": "prueba123",
     "firstName": "prueba",
     "lastName": "prueba",
-    "phone": "112345678",
+    "phone": "12345678",
     "email": "prueba@gmail.com",
     "idCard": "prueba",
     "birthDate": "2000-12-12",

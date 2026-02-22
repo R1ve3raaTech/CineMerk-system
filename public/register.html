@@ -53,13 +53,16 @@
             color: #333;
         }
 
-        .form-input-group input {
+        .form-input-group input,
+        .form-input-group select {
             width: 100%;
             padding: 15px;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 1.1rem;
             box-sizing: border-box;
+            background-color: white;
+            font-family: inherit;
         }
 
         /* EL GRAN BOTÓN ROJO */
@@ -127,28 +130,33 @@
 
             <div class="form-input-group">
                 <label>Nombre de Usuario</label>
-                <input type="text" id="r-username" required placeholder="Ej: kiko_pro">
+                <input type="text" id="r-username" required placeholder="">
             </div>
 
             <br>
 
             <div class="form-input-group">
                 <label>Correo Electrónico</label>
-                <input type="email" id="r-email" required placeholder="correo@ejemplo.com">
+                <input type="email" id="r-email" required placeholder="">
             </div>
 
             <br>
 
             <div class="form-input-group">
                 <label>Teléfono</label>
-                <input type="tel" id="r-phone" required placeholder="8888-8888">
+                <input type="tel" id="r-phone" required placeholder="">
             </div>
 
             <br>
 
             <div class="form-input-group">
-                <label>Cédula</label>
-                <input type="text" id="r-idCard" required placeholder="1-1234-5678">
+                <label>Tipo de Documento</label>
+                <select id="r-idType" required style="margin-bottom: 15px;">
+                    <option value="fisica">Cédula Física</option>
+                    <option value="dimex">DIMEX (Extranjero)</option>
+                </select>
+                <label>Número de Documento</label>
+                <input type="text" id="r-idCard" required placeholder="1-2345-6789">
             </div>
 
             <br>
@@ -187,6 +195,7 @@
                 lastName: document.getElementById('r-lastName').value.trim(),
                 phone: document.getElementById('r-phone').value,
                 email: document.getElementById('r-email').value,
+                idType: document.getElementById('r-idType').value,
                 idCard: document.getElementById('r-idCard').value,
                 birthDate: document.getElementById('r-birthDate').value,
                 username: document.getElementById('r-username').value.trim(),

@@ -208,7 +208,7 @@ app.delete('/api/rooms/:id', (req, res) => {
 // --- Auth & Users ---
 app.post('/api/auth/register', (req, res) => {
     const users = readData(USERS_FILE);
-    const { username, password, firstName, lastName, phone, email, idCard, birthDate } = req.body;
+    const { username, password, firstName, lastName, phone, email, idType, idCard, birthDate } = req.body;
 
     if (users.find(u => u.username === username)) {
         return res.status(400).json({ message: 'El usuario ya existe' });
@@ -222,6 +222,7 @@ app.post('/api/auth/register', (req, res) => {
         lastName,
         phone,
         email,
+        idType: idType || 'fisica',
         idCard,
         birthDate,
         role: username === 'admin_admin' ? 'admin' : 'user',
