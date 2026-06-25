@@ -38,6 +38,24 @@ body {
     line-height: 1.6;
 }
 
+/* Prevent the text caret (e.g. from browser "caret browsing") from landing
+   inside buttons, nav links and other clickable UI chrome that isn't meant
+   to be edited or selected as text. */
+button,
+.btn,
+.nav-item,
+.sidebar,
+.cart-toggle,
+.seat-btn,
+.movie-card,
+.badge,
+.status-badge {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    caret-color: transparent;
+}
+
 a {
     text-decoration: none;
 }
