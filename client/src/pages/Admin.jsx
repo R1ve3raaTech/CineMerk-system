@@ -55,6 +55,11 @@ export default function Admin() {
         }
     }, [currentUser, navigate]);
 
+    useEffect(() => {
+        document.body.classList.add('admin-mode');
+        return () => document.body.classList.remove('admin-mode');
+    }, []);
+
     // Dashboard
     const [stats, setStats] = useState({ movies: 0, rooms: 0, users: 0, tickets: 0, revenue: 0 });
 
