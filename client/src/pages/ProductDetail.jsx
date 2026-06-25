@@ -33,7 +33,7 @@ export default function ProductDetail() {
             <div id="product-detail" className="content-section active">
                 <div className="product-detail-container" style={productDetailContainerStyle}>
                     <div className="product-image-box" style={productImageBoxStyle}>
-                        <img src={product?.image || ''} alt={product?.name || 'Cargando...'} style={{ width: '100%', height: 'auto', borderRadius: 12, objectFit: 'contain' }} />
+                        {product && <img src={product.image} alt={product.name} style={{ width: '100%', height: 'auto', borderRadius: 12, objectFit: 'contain' }} />}
                     </div>
                     <div className="product-info-box" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                         <span className="product-badge" style={productBadgeStyle}>{product ? product.type.toUpperCase() : 'ALIMENTO'}</span>

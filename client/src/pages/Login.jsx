@@ -45,13 +45,15 @@ export default function Login() {
 
                 <form onSubmit={handleSubmit}>
                     <div className="input-group" style={{ marginBottom: '2rem' }}>
-                        <label style={labelStyle}>Usuario</label>
-                        <input type="text" required placeholder="Nombre de usuario" value={username}
+                        <label htmlFor="login-username" style={labelStyle}>Usuario</label>
+                        <input id="login-username" name="username" type="text" required autoComplete="username"
+                            placeholder="Nombre de usuario" value={username}
                             onChange={e => setUsername(e.target.value)} style={inputStyle} />
                     </div>
                     <div className="input-group" style={{ marginBottom: '2rem' }}>
-                        <label style={labelStyle}>Contraseña</label>
-                        <input type="password" required placeholder="contraseña" value={password}
+                        <label htmlFor="login-password" style={labelStyle}>Contraseña</label>
+                        <input id="login-password" name="password" type="password" required autoComplete="current-password"
+                            placeholder="contraseña" value={password}
                             onChange={e => setPassword(e.target.value)} style={inputStyle} />
                     </div>
                     <button type="submit" style={btnLoginStyle}>Entrar</button>

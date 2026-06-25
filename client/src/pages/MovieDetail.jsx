@@ -181,7 +181,7 @@ export default function MovieDetail() {
             <div id="movie-detail" className="content-section active">
                 <div className="movie-detail-container">
                     <div className="movie-poster-box">
-                        <img id="m-image" src={movie?.image || ''} alt={movie ? movie.title : 'Cargando...'} />
+                        {movie && <img id="m-image" src={movie.image} alt={movie.title} />}
                     </div>
                     <div className="movie-info-box">
                         <div className="movie-badge-group">

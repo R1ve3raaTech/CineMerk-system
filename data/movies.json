@@ -9,7 +9,7 @@
     "dates": "Estreno: 21 Feb - 31 Feb",
     "times": "20:00, 22:30",
     "status": "active",
-    "image": "images/scream7.jpg"
+    "image": "/images/scream7.jpg"
   },
   {
     "title": "Super Mario Galaxy: La Película",
@@ -33,7 +33,7 @@
     "dates": "Estreno: 21 Feb - 31 Feb",
     "times": "15:00, 18:30, 21:00",
     "status": "active",
-    "image": "images/ceatd.jpg"
+    "image": "/images/ceatd.jpg"
   },
   {
     "id": "2",
@@ -45,7 +45,7 @@
     "dates": "Estreno: 21 Feb - 31 Feb",
     "times": "14:00, 16:30, 19:00",
     "status": "active",
-    "image": "images/spidermanacross.jpg"
+    "image": "/images/spidermanacross.jpg"
   },
   {
     "id": "3",
@@ -57,7 +57,7 @@
     "dates": "Estreno: 21 Feb - 31 Feb",
     "times": "18:00, 21:00",
     "status": "active",
-    "image": "images/barman.jpg"
+    "image": "/images/barman.jpg"
   },
   {
     "id": "4",
@@ -69,7 +69,7 @@
     "dates": "Estreno: 21 Feb - 31 Feb",
     "times": "14:00, 17:30, 20:45",
     "status": "active",
-    "image": "images/intrestelar.jpg"
+    "image": "/images/intrestelar.jpg"
   },
   {
     "id": "5",
@@ -81,7 +81,7 @@
     "dates": "Estreno: 21 Feb - 31 Feb",
     "times": "13:00, 15:30, 18:00",
     "status": "active",
-    "image": "images/zootopiados.jpg"
+    "image": "/images/zootopiados.jpg"
   },
   {
     "id": "6",
@@ -93,7 +93,7 @@
     "dates": "Estreno: 21 Feb - 31 Feb",
     "times": "19:00, 21:30, 23:59",
     "status": "active",
-    "image": "images/fnafmovie2.jpg"
+    "image": "/images/fnafmovie2.jpg"
   },
   {
     "title": "Sonic 4",

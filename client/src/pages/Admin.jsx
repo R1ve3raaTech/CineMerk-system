@@ -419,7 +419,7 @@ export default function Admin() {
                                         <td>
                                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                                 <i className="fas fa-grip-lines drag-handle" style={{ cursor: 'grab', color: '#ccc', marginRight: 15, fontSize: '1.2rem' }} title="Arrastrar para mover"></i>
-                                                <img src={m.image} width="48" height="68" style={{ borderRadius: 8, objectFit: 'cover' }} />
+                                                <img src={m.image} alt={m.title} width="48" height="68" style={{ borderRadius: 8, objectFit: 'cover' }} />
                                             </div>
                                         </td>
                                         <td><strong>{m.title}</strong><br /><span style={{ fontSize: '0.78rem', color: '#888' }}>{m.duration} · {m.classification}</span></td>
@@ -495,7 +495,7 @@ export default function Admin() {
                                         <td>
                                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                                 <i className="fas fa-grip-lines drag-handle" style={{ cursor: 'grab', color: '#ccc', marginRight: 15, fontSize: '1.2rem' }} title="Arrastrar para mover"></i>
-                                                <img src={c.image} style={{ width: 40, height: 40, borderRadius: 8, objectFit: 'cover', marginRight: 10 }} />
+                                                <img src={c.image} alt={c.name} style={{ width: 40, height: 40, borderRadius: 8, objectFit: 'cover', marginRight: 10 }} />
                                                 <div>
                                                     <span style={{ fontWeight: 700 }}>{c.name}</span><br />
                                                     <span style={{ fontSize: '0.75rem', color: '#888' }}>{c.description.substring(0, 30)}...</span>
@@ -539,7 +539,7 @@ export default function Admin() {
                                     return (
                                         <tr key={u.id}>
                                             <td style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                                                <img src={avatarUrl} width="32" height="32" style={{ borderRadius: '50%' }} />
+                                                <img src={avatarUrl} alt={u.firstName || u.username} width="32" height="32" style={{ borderRadius: '50%' }} />
                                                 <div><strong>{u.firstName} {u.lastName}</strong><br /><span style={{ fontSize: '0.75rem', color: '#aaa' }}>{u.email || '—'}</span></div>
                                             </td>
                                             <td><code style={{ background: '#f5f5f5', padding: '2px 8px', borderRadius: 5, fontSize: '0.85rem' }}>@{u.username}</code></td>
@@ -816,7 +816,7 @@ export default function Admin() {
                             <div className="form-group" style={{ textAlign: 'center', marginTop: 10 }}>
                                 <div style={{ width: '100%', height: 180, border: '2px dashed #ddd', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: '#fafafa' }}>
                                     {comboForm.image ? (
-                                        <img src={comboForm.image} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        <img src={comboForm.image} alt="Vista previa" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                     ) : (
                                         <span style={{ color: '#bbb', fontSize: '0.9rem' }}><i className="fas fa-image" style={{ fontSize: '1.5rem', display: 'block', marginBottom: 5 }}></i>Vista Previa</span>
                                     )}
