@@ -29,7 +29,7 @@
     "role": "user",
     "tarjetaMerk": {
       "number": "MERK-XYZ9876",
-      "balance": 50000,
+      "balance": 30500,
       "createdAt": "2026-02-21T00:00:00.000Z"
     }
   }

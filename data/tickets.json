@@ -16,5 +16,23 @@
     "type": "entrada",
     "date": "2026-02-22T08:26:19.241Z",
     "status": "active"
+  },
+  {
+    "id": "8ba8a442-b49b-45de-ab77-9657034041e9",
+    "orderId": "40f954ac-b82d-4ea4-9910-2520841a131c",
+    "userId": "979193bb-b21c-43d6-b5cb-b817438b0694",
+    "username": "prueba123",
+    "movieId": "421e2e54-2446-46db-91f5-763e5cd0adfc",
+    "movieTitle": "Super Mario Galaxy: La Película",
+    "roomName": "Sala B2 - 3D",
+    "price": "₡4 500",
+    "seats": [
+      "E6"
+    ],
+    "time": "21:00",
+    "qty": 1,
+    "type": "entrada",
+    "date": "2026-06-25T05:08:28.946Z",
+    "status": "active"
   }
 ]
