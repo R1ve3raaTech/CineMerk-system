@@ -9,7 +9,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../public')));
+
+const CLIENT_DIST = path.join(__dirname, '../client/dist');
+app.use(express.static(CLIENT_DIST));
 
 const MOVIES_FILE = path.join(__dirname, '../data/movies.json');
 const ROOMS_FILE = path.join(__dirname, '../data/rooms.json');
@@ -495,6 +497,11 @@ app.delete('/api/orders/:id', (req, res) => {
     orders = orders.filter(o => o.id !== req.params.id);
     writeData(ORDERS_FILE, orders);
     res.json({ message: 'Orden eliminada' });
+});
+
+// SPA fallback: serve client/dist/index.html for any non-API route
+app.get(/^\/(?!api).*/, (req, res) => {
+    res.sendFile('index.html', { root: CLIENT_DIST });
 });
 
 app.listen(PORT, () => {
